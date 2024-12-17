@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Cronometru</title>
+    <script>
+        function startTimer(duration, display) {
+            var timer = duration, minutes, seconds;
+            var interval = setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    clearInterval(interval);
+                    alert("Timpul a expirat! Te rog să treci la secțiunea următoare!");
+                }
+            }, 1000);
+        }
+
+        window.onload = function () {
+            var threeAndHalfMinutes = 60 * 3 + 30, // 3 minute și 30 de secunde
+                display = document.querySelector('#time');
+            startTimer(threeAndHalfMinutes, display);
+        };
+    </script>
+</head>
+<body>
+    <div>Ai <span id="time">03:30</span> minute.</div>
+</body>
+</html>
